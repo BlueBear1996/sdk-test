@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\EnnController;
+use App\Http\Controllers\InnController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome', ['enn' => '']);
+    return view('welcome', ['inn' => '', 'status' => '', 'message' => '', 'date' => strtotime(date('Y-m-d H:i:s'))]);
 });
 
-Route::post('/', [EnnController::class, "showInfo"]);
+Route::post('/', [InnController::class, "showInfo"]);

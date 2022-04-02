@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class EnnLenghtRule implements Rule
+class InnLengthRule implements Rule
 {
     /**
      * Create a new rule instance.
@@ -38,6 +38,6 @@ class EnnLenghtRule implements Rule
      */
     public function message()
     {
-        return 'Inn can contain 10 or 12 digits.';
+        return __('validation.innLength');
     }
 }

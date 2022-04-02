@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\EnnServices;
+namespace App\Services\InnServices;
 
-class EnnAlgorithmServices
+class InnAlgorithmServices
 {
     /**
      * @var int[]
@@ -19,74 +19,74 @@ class EnnAlgorithmServices
 
 
     /**
-     * @param $enn
+     * @param $inn
      * @return bool
      */
-    public function validate($enn): bool
+    public function validate($inn): bool
     {
-        if (strlen($enn) == 10) {
-            return $this->validateTenSymbols($enn);
-        } else if (strlen($enn) == 12) {
-            return $this->validateTwelveSymbols($enn);
+        if (strlen($inn) == 10) {
+            return $this->validateTenSymbols($inn);
+        } else if (strlen($inn) == 12) {
+            return $this->validateTwelveSymbols($inn);
         }
         return false;
     }
 
     /**
-     * @param $enn
+     * @param $inn
      * @return bool
      */
-    private function validateTenSymbols($enn): bool
+    private function validateTenSymbols($inn): bool
     {
-        $controlSum = $this->getControlSum($enn, $this->coefTenSymbol);
+        $controlSum = $this->getControlSum($inn, $this->coefTenSymbol);
         $controlNum = $controlSum % 11;
         if ($controlNum > 9) {
             $controlNum = $controlSum % 10;
         }
-        if ($controlNum == $enn[9]) {
+        if ($controlNum == $inn[9]) {
             return true;
         }
         return false;
     }
 
     /**
-     * @param $enn
+     * @param $inn
      * @return bool
      */
-    private function validateTwelveSymbols($enn): bool
+    private function validateTwelveSymbols($inn): bool
     {
-        $controlSumOne = $this->getControlSum($enn, $this->coefTwelveSymbolOne);
+        $controlSumOne = $this->getControlSum($inn, $this->coefTwelveSymbolOne);
         $controlNumOne = $controlSumOne % 11;
         if ($controlNumOne > 9) {
             $controlNumOne = $controlSumOne % 10;
         }
 
 
-        $controlSumTwo = $this->getControlSum($enn, $this->coefTwelveSymbolTwo);
+        $controlSumTwo = $this->getControlSum($inn, $this->coefTwelveSymbolTwo);
         $controlNumTwo = $controlSumTwo % 11;
         if ($controlNumTwo > 9) {
             $controlNumTwo = $controlSumTwo % 10;
         }
 
-        if ($controlNumOne == $enn[10] && $controlNumTwo == $enn[11]) {
+        if ($controlNumOne == $inn[10] && $controlNumTwo == $inn[11]) {
             return true;
         }
         return false;
     }
 
     /**
-     * @param $enn
+     * @param $inn
      * @param $coefArr
      * @return int
      */
-    private function getControlSum($enn, $coefArr): int {
+    private function getControlSum($inn, $coefArr): int {
         $controlSum = 0;
-        for ($i = 0; $i < (strlen($enn) - 1); $i++) {
+        for ($i = 0; $i < (strlen($inn) - 1); $i++) {
             $coef = 1;
             if (count($coefArr) >= $i) {
                 $coef = $coefArr[$i] == 0 ? 1 : $coefArr[$i];
             }
-            $controlSum += $enn[$i] * $coef;
+            $controlSum += $inn[$i] * $coef;
         }
         return $controlSum;
     }

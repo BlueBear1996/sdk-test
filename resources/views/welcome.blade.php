@@ -15,50 +15,102 @@
         </style>
 
         <style>
+            input[type="text"] {
+                font-family: inherit;
+                font-size: inherit;
+                line-height: inherit;
+                margin: 0;
+            }
+
             body {
                 font-family: 'Nunito', sans-serif;
+                background: #9fb1bf;
             }
             .form-container {
                 margin: 175px auto 0 auto;
             }
             .form {
-                width: 500px;
-                height: 500px;
-
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: #4a5568;
+                max-width: 500px;
+                background: #fff;
+                padding: 30px;
+                box-shadow: 15px 12px 23px 2px rgba(44, 95, 135, 0.26);
             }
             .form .form__button {
-                width: 75px;
-                height: 25px;
+                width: 100%;
+                height: 35px;
 
-                margin: 15px auto 0 auto;
+                margin: 30px auto 0 auto;
 
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                color: #fff;
+                background: #008fff;
+            }
+            .form .form__button:disabled {
+                opacity: 0.5;
             }
             .form .form__title {
-                text-align: center;
+                color: #008fff;
+                margin: 0;
                 text-transform: uppercase;
+            }
+            .form .form__header {
+            }
+            .form .form__inn-text {
+                display: block;
+                margin: 30px 0 0 0;
+                color: #727478;
+                font-weight: 800;
+            }
+            .form .form_inn-input {
+                padding: 0.375rem 0.75rem;
+                margin-top: 5px;
+                background: #ebebeb;
+                width: 100%;
+                outline: none;
+            }
+            .form .form_inn-input:hover, form .form_inn-input:active {
+                outline: none;
+            }
+            .form .form__error {
+                margin: 30px 0 0 0;
+                color: #830808;
             }
         </style>
     </head>
     <body class="antialiased">
         <div class="form-container">
             <div class="form-container form">
-                <form action="/" method="POST">
+                <div class="form__header">
+                    <h3 class="form__title">Проверить статус самозанятого по ИНН</h3>
+                </div>
+                <form action="/" method="POST" id="inn-form">
                     @csrf
-                    <h2>{{$enn}}</h2>
-                    <h2></h2>
-                    <h3 class="form__title">Введите ИНН</h3>
-                    @error('enn') <p>{{ $message }}</p> @enderror
-                    <input type="text" name="enn" value="{{old('enn')}}">
+                    <label class="form__inn-text" for="inn">ИНН</label>
+                    <input maxlength="12" placeholder="Введите ИНН самозайнятого 12 символов" class="form_inn-input" type="number" id="inn" name="inn">
+                    @error('inn') <p class="form__error">{{ $message }}</p> @enderror
                     <button class="form__button" type="submit">Отправить</button>
                 </form>
             </div>
         </div>
+        <script>
+            const innForm = document.getElementById('inn-form')
+            const innInput = document.getElementById('inn')
+            const formSubmit = innForm.getElementsByClassName('form__button')[0]
+            innInput.addEventListener('keypress', function (e) {
+                console.log(e.target.value.length)
+                if (e.target.value.length > 11) {
+                    e.preventDefault()
+                    return
+                }
+                if (e.target.value.length !== 11) {
+                    if (innInput.style.border !== '1px solid red')
+                        innInput.style.border = '1px solid red'
+                } else
+                    innInput.style.border = '1px solid green'
+            })
+        </script>
     </body>
 </html>

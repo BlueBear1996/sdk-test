@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\EnnAlgorithmRule;
-use App\Rules\EnnLenghtRule;
-use App\Services\EnnServices\EnnAlgorithmServices;
+use App\Rules\InnAlgorithmRule;
+use App\Rules\InnLengthRule;
+use App\Services\InnServices\InnAlgorithmServices;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EnnPostRequest extends FormRequest
+class InnPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,9 @@ class EnnPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'enn' => ['required', 'numeric',
-                new EnnLenghtRule(),
-                new EnnAlgorithmRule(new EnnAlgorithmServices())]
+            'inn' => ['required', 'numeric',
+                new InnLengthRule(),
+                new InnAlgorithmRule(new InnAlgorithmServices())]
         ];
     }
 }

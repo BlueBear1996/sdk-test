@@ -128,6 +128,8 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'innLength' => 'Inn can contain 10 or 12 digits.',
+    'innAlgorithm' => 'Inn is not valid.',
 
     /*
     |--------------------------------------------------------------------------
