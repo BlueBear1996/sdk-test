@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome', ['inn' => '', 'status' => '', 'message' => '', 'date' => strtotime(date('Y-m-d H:i:s'))]);
+    return view('welcome', ['status' => '']);
 });
 
 Route::post('/', [InnController::class, "showInfo"]);

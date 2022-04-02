@@ -55,12 +55,11 @@ class InnAlgorithmServices
      */
     private function validateTwelveSymbols($inn): bool
     {
-        $controlSumOne = $this->getControlSum($inn, $this->coefTwelveSymbolOne);
+        $controlSumOne = $this->getControlSum(substr($inn, 0, 11), $this->coefTwelveSymbolOne);
         $controlNumOne = $controlSumOne % 11;
         if ($controlNumOne > 9) {
             $controlNumOne = $controlSumOne % 10;
         }
-
 
         $controlSumTwo = $this->getControlSum($inn, $this->coefTwelveSymbolTwo);
         $controlNumTwo = $controlSumTwo % 11;

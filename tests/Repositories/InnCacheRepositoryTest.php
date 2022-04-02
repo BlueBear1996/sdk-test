@@ -3,13 +3,14 @@
 namespace Tests\Repositories;
 
 use App\Repositories\InnCacheRepository;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+
 
 class InnCacheRepositoryTest extends TestCase
 {
     protected InnCacheRepository $innCacheRepository;
 
-    public function testAddInnInfo()
+    public function testPutAndGetInnInfo()
     {
         $this->innCacheRepository = new InnCacheRepository();
 
@@ -20,4 +21,6 @@ class InnCacheRepositoryTest extends TestCase
 
         $this->assertNotNull($this->innCacheRepository->getInnInfo($testInn));
     }
+
+
 }
