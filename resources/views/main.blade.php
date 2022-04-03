@@ -91,7 +91,12 @@
                     <label class="form__inn-text" for="inn">ИНН</label>
                     <input maxlength="12" placeholder="Введите ИНН самозайнятого 12 символов" class="form_inn-input" type="number" id="inn" name="inn">
                     @error('inn') <p class="form__error">{{ $message }}</p> @enderror
-                    <h3>{{ $status }}</h3>
+                    @if(isset($message))
+                        @if(isset($code))
+                            <h2 class="innCode">{{ $code }}</h2>
+                        @endif
+                        <p class="innMessage">{{ $message }}</p>
+                    @endif
                     <button class="form__button" type="submit">Отправить</button>
                 </form>
             </div>

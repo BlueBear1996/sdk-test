@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome', ['status' => '']);
+    return view('main');
 });
 
 Route::post('/', [InnController::class, "showInfo"]);
